@@ -1,0 +1,74 @@
+version: "3.1"
+
+
+networks:
+  app-tier:
+    driver: bridge
+
+services:
+  
+  db:
+    image: mysql/mysql-server
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    container_name: db
+    ports:
+      - "3306:3306"
+    expose:
+      - 3306
+    environment:
+      - MYSQL_USER=root
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_PASSWORD=root
+      - MYSQL_DATABASE=nest
+    networks:
+      - app-tier
+    
+  frontend:
+    build : ./wm_frontend
+    ports :
+     - 4200:4200
+    networks:
+      - app-tier
+
+
+  backend:
+    build : ./wm
+    ports :
+     - 3000:3000
+    expose:
+      - 3000
+    depends_on:
+      - db
+    networks:
+      - app-tier
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - app-tier
+  
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: rabbitmq
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    networks:
+      - app-tier
+
+  #quarkus:
+    #image: quarkus/quarkus-native-s2i:<version>
+    #container_name: quarkus
+    #ports:
+     # - "8081:8080"
+    #networks:
+     # - app-tier
+    #volumes:
+     # - "./my-project:/deployments"
+    #command: /deployments/<artifact>.jar
+
+  
