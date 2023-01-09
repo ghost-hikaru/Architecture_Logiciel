@@ -1,0 +1,53 @@
+<app-nav></app-nav>
+<div class="container">
+    <br/>
+    <br/>
+    <div class="row centre">
+    <div class="col">
+        <div class="section-title titre">
+            <h2>Mon espace</h2>
+        </div>
+    </div>
+    </div>
+
+    <div class="row jumbotron mt-3 d-flex align-items-center info">
+        
+        <div class="col-md-6 d-flex flex-column"> 
+            <p><strong>Mon id : </strong>{{id}}</p>
+            <p><strong>Mon nom : </strong>{{firstname}}</p>
+            <p><strong>Mon prénom : </strong>{{lastname}}</p>
+            <p><strong>Mon age : </strong>{{age}}</p>
+        </div>
+    </div>
+    <br/>
+    <div class="row jumbotron mt-3 d-flex align-items-center info">
+        <div class="row justify-content-around text-center">
+            <a class="col-md-3 boxEspacePerso" [routerLink]="['/modification']" routerLinkActive="active">
+            <div>
+                <mat-icon>refresh</mat-icon>
+                <p>Modifier mes informations personnelles</p>
+            </div>
+            </a>
+            <a class="col-md-3 boxEspacePerso" [routerLink]="['/addUser']" routerLinkActive="active">
+            <div>
+                <mat-icon>person_add</mat-icon>
+                <p>Ajouter une personne</p>
+            </div>
+            </a>
+            <a class="col-md-3 boxEspacePerso" [routerLink]="['/addAssociation']" routerLinkActive="active">
+            <div>
+                <mat-icon>plus_one</mat-icon>
+                <p>Ajouter une association</p>
+            </div>
+            </a>
+    
+           <!-- <a class="col-md-3 boxEspacePerso" href="">
+            <div>
+                <mat-icon>refresh</mat-icon>
+                <p>Modifier une association</p>
+            </div>
+            </a>-->
+        </div>
+    </div>
+    
+</div>

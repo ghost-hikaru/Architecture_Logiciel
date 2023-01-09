@@ -1,0 +1,24 @@
+<app-nav></app-nav>
+<br/>
+<br/>
+<div class="row">
+  <div class="col">
+    <div class="section-title div1">
+      <h2>Envoyer un evenement</h2>
+    </div>
+  </div>
+</div>  
+<div class="container">
+  <div class="row div2">
+    <div class="col-3 text-center div3">
+      <form [formGroup]="event" (ngSubmit)="onSubmit()">
+        <div class="user-box">
+          <textarea class="form-control" type="text" id="username" placeholder="Message" formControlName="name"></textarea>
+        </div>
+        <br/>
+        <button class="btn btn-primary" type="submit" name="submit" >Envoyer</button> <br/>
+      </form>
+    </div>
+  </div>
+</div>
+<br/>

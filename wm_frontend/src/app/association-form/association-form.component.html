@@ -1,0 +1,30 @@
+<app-nav></app-nav>
+<br/>
+<br/>
+<div class="row">
+  <div class="col">
+    <div class="section-title div1">
+      <h2>Ajouter une nouvelle association</h2>
+    </div>
+  </div>
+</div>  
+<div class="container">
+  <div class="row div2">
+    <div class="col-3 text-center div3">
+      <form [formGroup]="newAssoc" (ngSubmit)="onSubmit()">
+        <div class="user-box">
+          <input class="form-control" type="text" id="username" placeholder="Name" formControlName="name"/>
+        </div>
+        <br/>
+        <div class="user-box">
+          <select multiple formControlName="user">
+            <option *ngFor="let source of dataSource" [value]="source.id">{{ source.lastname }}  {{ source.firstname }}  {{ source.age }}</option>
+          </select>        
+        </div>
+        <br/>
+        <button class="btn btn-primary" type="submit" name="submit" >Ajouter</button> <br/>
+      </form>
+    </div>
+  </div>
+</div>
+<br/>

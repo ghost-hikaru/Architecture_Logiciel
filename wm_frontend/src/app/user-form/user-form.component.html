@@ -1,0 +1,36 @@
+<app-nav></app-nav>
+<br/>
+<br/>
+<div class="row">
+  <div class="col">
+    <div class="section-title titre">
+      <h2>Ajouter un nouvel utilisateur</h2>
+    </div>
+  </div>
+</div>  
+<div class="container">
+  <div class="row head">
+    <div class="col-3 text-center body">
+      <form [formGroup]="newUser" (ngSubmit)="onSubmit()">
+        <div class="user-box">
+          <input class="form-control" type="text" id="username" placeholder="firstname" formControlName="firstname"/>
+        </div>
+        <br/>
+        <div class="user-box">
+            <input class="form-control" type="text" id="username" placeholder="lastname" formControlName="lastname"/>
+        </div>
+        <br/>
+        <div class="user-box">
+            <input class="form-control" type="number" id="username" placeholder="age" formControlName="age"/>
+        </div>
+        <br/>
+        <div class="user-box">
+            <input class="form-control" type="text" id="username" placeholder="password" formControlName="password"/>
+        </div>
+        <br/>
+        <button class="btn btn-primary" type="submit" name="submit" >Ajouter</button> <br/>
+      </form>
+    </div>
+  </div>
+</div>
+<br/>
