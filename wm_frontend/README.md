@@ -75,12 +75,16 @@ La barre de recherche est un composant à part entière que l'on va afficher sur
 ## Conclusion
 Ce frontend permet de remplir les fonctions demandées par le sujet, et va un peu plus loin par exemple dans la barre de recherche où l’on peut chercher également par le nom, le prénom, l’âge pour les utilisateurs et par le nom pour les associations. Un futur point qui peut être amélioré est l’envoi des caractéristiques d’un compte par mail lors de la création du compte afin que l’utilisateur connaisse son ID pour se connecter car celui-ci n’est jamais donné mais le sujet exige de se connecter via l’ID ce que nous avons choisi de respecter pour des conditions pratiques. 
 
-
 ------------------------------------------------------------------------------------------------
 # Information
 
 Ce projet a été généré par [Angular CLI](https://github.com/angular/angular-cli) version 14.2.7.
 
 ## Lancer le projet
-Pour lancer le projet, il faut suivre les instructions présentes sur le lien suivant : 
+Pour lancer le projet, il faut suivre les instructions présentes sur le lien suivant, suivre le tutoriel en bas de la page : 
 https://github.com/ghost-hikaru/Architecture_Logiciel
+
+## Contributeur
+[Mathurin Melvin](melvin.mathurin@etudiant.univ-rennes1.fr),
+
+[Voisin Enzo](enzo.voisin@etudiant.univ-rennes1.fr)

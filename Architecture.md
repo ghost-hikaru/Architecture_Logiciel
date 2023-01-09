@@ -85,4 +85,12 @@ Nous aimerons soumettre une analyse du point de vue étudiant sur ce projet. Nou
 ## Conclusion
 En conclusion, nous avons vu comment générer des Dockerfile afin de créer des conteneurs pour nos services, nous avons vu comment les mettre en communication via un DockerCompose. Nous avons également découvert les services RabbitMQ, Quarkus et Adminer.
 
+----------------------------------------------------------------------------------------
+# Comment lancer l'application ?
 
+
+
+## Contributeur
+[Mathurin Melvin](melvin.mathurin@etudiant.univ-rennes1.fr),
+
+[Voisin Enzo](enzo.voisin@etudiant.univ-rennes1.fr)
