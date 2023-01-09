@@ -7,7 +7,7 @@ Voici le lien pour acceder au rapport [Rapport](https://github.com/ghost-hikaru/
 
 
 
-## Contributeur
+# Contributeur
 [Mathurin Melvin](melvin.mathurin@etudiant.univ-rennes1.fr),
 
 [Voisin Enzo](enzo.voisin@etudiant.univ-rennes1.fr)
