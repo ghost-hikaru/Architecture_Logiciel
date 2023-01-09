@@ -3,49 +3,7 @@
 Le but de ce TP est de découper en micro-services le projet de web réalisé en parallèle. Dans ce TP, nous allons mettre ces micro-services dans des conteneurs Docker, les gérer et rajouter des services tel que RabbitMQ ou encore Quarkus. 
 
 ## Architecture de notre projet
-```plantuml
-@startuml
-component Angular [
-Angular
-port = 4200
-]
-component nestjs [
-NestJS, 
-port = 3000
-]
-component rabbitmq [
-RabbitMQ
-port1 = 15672
-port2 = 5672]
-component adminer [
-Adminer
-port = 8080
-]
-component quarkus [
-Quarkus μ-service
-port = 8081
-]
-
-database mysql [
-MySQL
-port = 3306
-]
-
-interface HTTP as http
-interface AMQP_Producer as amqpp
-interface AMQP_Consumer as amqpc
-
-http -right- Angular
-Angular -right-> nestjs
-nestjs -> mysql
-mysql -down-> adminer
-nestjs --> amqpp
-amqpp -left- rabbitmq
-rabbitmq -down- amqpc
-quarkus -up-> amqpc
-
-@enduml
-```
+![Architecture logiciel de notre application](./assets/ArchiLogiciel.png "Architecture logiciel de notre application.")
 
 ### Explication
 Nous sommes partie de notre projet web qui se composait d'un back-end,d'un front-end et d'une base de donnée. Le processus est simple : lorsque une requête est effectué elle attein d'abord le **front-end**, ensuite le front-end, lui, communique avec le **back-end** qui vient gérer les données. Le back-end vient donc dans notre architecture, communiquer avec **la base de donnée**, il communique également avec **Adminer** qui est un service similaire à **PhpMyAdmin** et permet de voir en temps réel l'état de nos table et leurs contenu. Enfin notre back-end communique avec **RabbitMq** au moyen d'une queue spéciifé. Enfin RabbitMq communique avec **Quarkus** pour lire les messages sur la queue et les envoyé par la suite par mail.
