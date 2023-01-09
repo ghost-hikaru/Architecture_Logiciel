@@ -60,15 +60,17 @@ services:
     networks:
       - app-tier
 
-  #quarkus:
-    #image: quarkus/quarkus-native-s2i:<version>
-    #container_name: quarkus
-    #ports:
-     # - "8081:8080"
-    #networks:
-     # - app-tier
-    #volumes:
-     # - "./my-project:/deployments"
-    #command: /deployments/<artifact>.jar
+  quarkus:
+    build:
+      context: ./quarkus
+      dockerfile : src/main/docker/Dockerfile.native
+    container_name: quarkus
+    ports:
+      - "8081:8081"
+    networks:
+      - app-tier
+    depends_on:
+      - rabbitmq
+
 
   
