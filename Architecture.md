@@ -5,7 +5,6 @@ Le but de ce TP est de découper en micro-services le projet de web réalisé en
 ## Architecture de notre projet
 ```plantuml
 @startuml
-@startuml
 component Angular [
 Angular
 port = 4200
