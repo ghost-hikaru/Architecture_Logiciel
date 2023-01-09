@@ -1,0 +1,41 @@
+@startuml
+component Angular [
+Angular
+port = 4200
+]
+component nestjs [
+NestJS, 
+port = 3000
+]
+component rabbitmq [
+RabbitMQ
+port1 = 15672
+port2 = 5672]
+component adminer [
+Adminer
+port = 8080
+]
+component quarkus [
+Quarkus μ-service
+port = 8081
+]
+
+database mysql [
+MySQL
+port = 3306
+]
+
+interface HTTP as http
+interface AMQP_Producer as amqpp
+interface AMQP_Consumer as amqpc
+
+http -right- Angular
+Angular -right-> nestjs
+nestjs -> mysql
+mysql -down-> adminer
+nestjs --> amqpp
+amqpp -left- rabbitmq
+rabbitmq -down- amqpc
+quarkus -up-> amqpc
+
+@enduml

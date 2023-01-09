@@ -10,7 +10,7 @@ import { AuthGuard } from '@nestjs/passport';
 export class AssociationsController {
   constructor(private service: AssociationsService){}
 
-  @UseGuards(AuthGuard('jwt'))
+  //@UseGuards(AuthGuard('jwt'))
   @ApiTags('Get')
   @Get()
   getAll(): Promise<Association[]>{   
@@ -21,7 +21,7 @@ export class AssociationsController {
     return this.service.getSearch(parametre.searching);
   }
   
-  @UseGuards(AuthGuard('jwt'))
+  //@UseGuards(AuthGuard('jwt'))
   @ApiTags('Get')
   @Get(':id')
   async getById(@Param() parametre): Promise<Association>{  

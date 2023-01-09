@@ -12,7 +12,7 @@ import { Role } from 'src/role/role.entity';
 export class UsersController {
   constructor(private service: UsersService){}
 
-  @UseGuards(AuthGuard('jwt'))
+  //@UseGuards(AuthGuard('jwt'))
   @ApiTags('Get')
   @Get()
   getAll(): Promise<User[]>{
@@ -23,7 +23,7 @@ export class UsersController {
     return this.service.getSearch(parametre.searching);
   }
 
-  @UseGuards(AuthGuard('jwt'))
+  //@UseGuards(AuthGuard('jwt'))
   @ApiTags('Get')
   @Get(':id')
   async getById(@Param() parametre): Promise<User>{  
