@@ -6,18 +6,20 @@ Le but de ce TP est de découper en micro-services le projet de web réalisé en
 ![Architecture logiciel de notre application](./assets/ArchiLogiciel.png "Architecture logiciel de notre application.")
 
 ### Explication
-Nous sommes partis de notre projet web qui se composait d'un back-end,d'un front-end et d'une base de donnée. Le processus est simple : lorsque une requête est effectuée elle atteint d'abord le **front-end**, ensuite le front-end, lui, communique avec le **back-end** qui vient gérer les données. Le back-end vient donc dans notre architecture, communiquer avec **la base de donnée**, il communique également avec **Adminer** qui est un service similaire à **PhpMyAdmin** et permet de voir en temps réel l'état de nos tables et leurs contenus. De plus notre back-end communique avec **RabbitMq** au moyen d'une queue spécifiée. Enfin RabbitMq communique avec **Quarkus** pour lire les messages sur la queue et les envoyer par la suite par mail.
+Nous sommes partis de notre projet web qui se composait d'un back-end,d'un front-end et d'une base de donnée. Le processus est simple : lorsque une requête est effectuée elle atteint d'abord le **front-end**, ensuite le front-end, lui, communique avec le **back-end** qui vient gérer les données. Le back-end vient donc dans notre architecture, communiquer avec **la base de donnée**, il communique également avec **Adminer** qui est un service similaire à **PhpMyAdmin** et permet de voir en temps réel l'état de nos tables et leurs contenus. De plus notre back-end communique avec **RabbitMq** au moyen d'une queue spécifiée. Enfin RabbitMq communique avec **Quarkus** pour lire les messages sur la queue et les envoyer par la suite par mail via un serveur **SMTP**. Nous utilisons Grafana est un outil de visualisation et d'analyse des métriques et des journaux, permettant la création et le partage de tableaux de bord et de panneaux. Prometheus, quant à lui, est un système de surveillance qui se concentre sur la collecte de métriques de différents systèmes en temps réel. Ensemble, Prometheus et Grafana permettent de surveiller et de comprendre le comportement des systèmes en temps réel, ce qui aide à identifier et à résoudre rapidement les problèmes de performance.
 
 
 #### Compromis
 * Utiliser adminer : Nous avons décidé d'utiliser Adminer car il était important pour nous de pouvoir voir les tables à tout moment ainsi que leur contenu. Nous avons hésité à utiliser PhpMyAdmin mais celui-ci est beaucoup plus compliqué à mettre en place.
 * Utiliser MySQL : Pour le SGBD nous avons utilisé MySQL car c'était un des SGBD que nous connaisions tous les 2 et qui était facile à mettre en place.
 * Ne pas microsiser plus le back-end : Dans le plan de base, nous voulions prendre le back et le diviser en plusieurs micro-services. Cependant par manque de temps cela ne s'est pas fait.
+* Utilisation de **Prometheus et de Grafana** : Dans le sujet, on nous a indiqué qu'il était préférable d'utiliser ces deux outils plutôt qu'un autre.
 
 #### Architecture possible
 * Utiliser PhpMyAdmin ou ne pas utiliser Adminer : Nous avons expliquer le choix avant, mais nous aurions pu avoir une architecture différente de celle que l'on a actuellement en remplacant Adminer par PhpMyAdmin ou bien en n'ayant rien à la place.
 * Utiliser un autre SGBD : Nous avions plusieurs choix de SGBD disponible (PostgreSQL ou bien SQLlite par exemple). Là aussi l'architecture aurait pu être différente en remplacant le SGBD par celui utilisé.
 * Micro-servicisé plus le back-end : En découpant notre back-end en plusieurs micro-service nous aurions pu avoir une architecture totalement différente et plus complexe.
+* Utilisation d'un autre outil de monitoring : Nous aurions pu utiliser d'autres outils comme Zabbix, Nagios, OpenTelemetry ou bien Zipkin.
 
 ### Liste des services
 * Front-end : Interface utilisateur de notre projet web. **Statut : Validé**
@@ -26,6 +28,10 @@ Nous sommes partis de notre projet web qui se composait d'un back-end,d'un front
 * Adminer : Application web de gestion de base de données de notre projet web. **Statut : Validé**
 * RabbitMq : Logiciel d'agent de messages de notre application. **Statut : Validé**
 * Quarkus : Application Java qui gère l'envoi de mail de notre application web. **Statut : Mis en oeuvre**
+* Grafana : Grafana est un outil pour créer et partager des visualisations de données métriques, il permet d'explorer et de comprendre les données collectées à partir de différentes sources comme les bases de données, les systèmes et les applications. **Statut : validé**
+* Prometheus : Prometheus est un système de surveillance qui collecte et stocke les données métriques en temps réel, il permet d'analyser les données et d'identifier rapidement les problèmes de performance. **Statut : validé**
+* SMTP : SMTP est un protocole utilisé pour envoyer et recevoir des e-mails, il permet d'envoyer des messages d'un serveur à un autre et de les délivrer à des clients de messagerie locaux comme Outlook ou Thunderbird. **Statut : validé**
+* Nginx : Serveur web et proxy inverse qui peut également être utilisé comme équilibreur de charge. Il est connu pour ses performances et sa stabilité. Il est souvent utilisé pour gérer un grand nombre de connexions simultanées et pour traiter les fichiers statiques plus efficacement que les autres serveurs web. Il peut également être utilisé pour acheminer des requêtes vers d'autres serveurs ou applications et pour gérer des tâches telles que la terminaison et l'authentification SSL. **Statut : Mis en oeuvre**
 
 
 ### Configuration et utilisation
@@ -76,6 +82,8 @@ docker-compose up
 ```
 Cela permet de lancer l'application avec tout les containers.
 Si lorsque vous allez sur le front http://localhost:4200/, rien ne se passe, cela peut venir de votre navigateur. Nous vous conseillons d'utiliser le navigateur Google Chrome pour éviter tout problème.
+
+Prometheus est un système de surveillance qui collecte les métriques de vos systèmes en temps réel. Grafana est un outil de visualisation qui vous permet de créer des tableaux de bord personnalisés avec ces métriques, ce qui les rend faciles à comprendre et à identifier les problèmes. Ensemble, ils permettent une surveillance en temps réel, une évolutivité, une flexibilité et des alertes faciles. Et aussi une intégration facile avec d'autres systèmes et le partage avec d'autres membres de l'équipe.
 
 Aucun mode spécifique n'a été ajouté pour cette architecture. Avec un plus de temps nous aurions rajouté un mode debug et également un mode développement pour faciliter l'integration des nouvelles fonctionnalités au sein du projet. De même par manque de temps, nous n'avons pas eu le temps de travailler sur les ports précisément. En effet dans l'état actuel des choses, chaque contener écoute son propre port et fait ce qu'il a faire. Aucune amélioration pour réduire le nombre de port ainsi que de protéger les services n'ont été faite. Mais c'est également un point que nous aurions voulu aborder.
 
