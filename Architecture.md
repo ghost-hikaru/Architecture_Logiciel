@@ -14,12 +14,14 @@ Nous sommes partis de notre projet web qui se composait d'un back-end,d'un front
 * Utiliser MySQL : Pour le SGBD nous avons utilisé MySQL car c'était un des SGBD que nous connaisions tous les 2 et qui était facile à mettre en place.
 * Ne pas microsiser plus le back-end : Dans le plan de base, nous voulions prendre le back et le diviser en plusieurs micro-services. Cependant par manque de temps cela ne s'est pas fait.
 * Utilisation de **Prometheus et de Grafana** : Dans le sujet, on nous a indiqué qu'il était préférable d'utiliser ces deux outils plutôt qu'un autre.
+* Utilisation de **k6** : K6 se met plus facilement en place. De plus il s'accorde mieux avec Grafana et Prometheus.
 
 #### Architecture possible
 * Utiliser PhpMyAdmin ou ne pas utiliser Adminer : Nous avons expliquer le choix avant, mais nous aurions pu avoir une architecture différente de celle que l'on a actuellement en remplacant Adminer par PhpMyAdmin ou bien en n'ayant rien à la place.
 * Utiliser un autre SGBD : Nous avions plusieurs choix de SGBD disponible (PostgreSQL ou bien SQLlite par exemple). Là aussi l'architecture aurait pu être différente en remplacant le SGBD par celui utilisé.
 * Micro-servicisé plus le back-end : En découpant notre back-end en plusieurs micro-service nous aurions pu avoir une architecture totalement différente et plus complexe.
 * Utilisation d'un autre outil de monitoring : Nous aurions pu utiliser d'autres outils comme Zabbix, Nagios, OpenTelemetry ou bien Zipkin.
+* Utiliser un autre outil de Load-balancing : Nous avions une liste de ce que nous pouvions utiliser comme load-balancing. En utilisant un autre l'architecture aurait pu être différente.
 
 ### Liste des services
 * Front-end : Interface utilisateur de notre projet web. **Statut : Validé**
@@ -32,7 +34,7 @@ Nous sommes partis de notre projet web qui se composait d'un back-end,d'un front
 * Prometheus : Prometheus est un système de surveillance qui collecte et stocke les données métriques en temps réel, il permet d'analyser les données et d'identifier rapidement les problèmes de performance. **Statut : validé**
 * SMTP : SMTP est un protocole utilisé pour envoyer et recevoir des e-mails, il permet d'envoyer des messages d'un serveur à un autre et de les délivrer à des clients de messagerie locaux comme Outlook ou Thunderbird. **Statut : validé**
 * Nginx : Serveur web et proxy inverse qui peut également être utilisé comme équilibreur de charge. Il est connu pour ses performances et sa stabilité. Il est souvent utilisé pour gérer un grand nombre de connexions simultanées et pour traiter les fichiers statiques plus efficacement que les autres serveurs web. Il peut également être utilisé pour acheminer des requêtes vers d'autres serveurs ou applications et pour gérer des tâches telles que la terminaison et l'authentification SSL. **Statut : Mis en oeuvre**
-
+* K6 : Il peut exécuter de nombreux types de tests, chacun d'entre eux répondant à un objectif différent.
 
 ### Configuration et utilisation
 La configuration de l'architecture est fait de la sorte :

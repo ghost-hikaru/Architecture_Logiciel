@@ -31,7 +31,7 @@ Nginx
 port1 = 443
 port2 = 80
 ]
-package "Load Testing"{
+package "Load Testing & Monitoring"{
     component prometheus [
         Promethus
     ]
@@ -40,6 +40,14 @@ package "Load Testing"{
         Grafana
         port = 3001
     ]
+
+    component k6 [
+        K6
+    ]
+    component influx [
+        InfluxDb
+    ]
+
     interface Pull_metrics as pm 
     interface Pull_Data as pd 
 }
@@ -78,4 +86,5 @@ nestjs --> pm
 pm -- prometheus
 prometheus --> pd 
 pd -right- grafana 
+k6 --> influx
 @enduml
