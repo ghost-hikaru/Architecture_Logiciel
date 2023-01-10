@@ -37,7 +37,7 @@ This project uses the following volumes:
 - `grafana-config`: This volume is used to store the configuration files for Grafana service.
 - `grafana-dashboards` : This volume is used to store the dashboards for Grafana service.
 
-## db
+## Database
 
 A MySQL database service. The service uses the official MySQL image from Docker Hub, and sets the following environment variables:
 
@@ -48,15 +48,15 @@ A MySQL database service. The service uses the official MySQL image from Docker 
 
 The service is configured to listen on port 3306 and will be exposed on the host machine at the same port, and also the service will be given a name `db`.
 
-## frontend
+## Frontend
 
 A service that builds an Angular application from the files located in the `./wm_frontend` directory and exposes the application on port 4200 of the host machine, and also connects to app-tier network.
 
-## backend
+## Backend
 
 A service that builds a Node.js application from the files located in the `./wm` directory and exposes the application on port 3000 of the host machine. This service depends on the `db` service, and connects to app-tier network.
 
-## quarkus
+## Quarkus
 
 A service that runs a Quarkus application from the files located in the `./quarkus` directory. It runs the native version of the application using the `Dockerfile.native` file located in `src/main/docker` directory. It connects to the app-tier network and exposes the application on port 8081. Also, it depends on the rabbitmq service.
 
