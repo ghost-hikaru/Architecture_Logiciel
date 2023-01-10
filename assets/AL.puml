@@ -1,4 +1,7 @@
 @startuml
+
+
+package "App-tier"{
 component Angular [
 Angular
 port = 4200
@@ -19,6 +22,27 @@ component quarkus [
 Quarkus μ-service
 port = 8081
 ]
+component mailserver[
+Mailserver
+port = 1080
+]
+component nginx[
+Nginx
+port1 = 443
+port2 = 80
+]
+package "Load Testing"{
+    component prometheus [
+        Promethus
+    ]
+
+    component grafana [
+        Grafana
+        port = 3001
+    ]
+    interface Pull_metrics as pm 
+    interface Pull_Data as pd 
+}
 
 database mysql [
 MySQL
@@ -26,16 +50,32 @@ port = 3306
 ]
 
 interface HTTP as http
+interface HTTP as http2
 interface AMQP_Producer as amqpp
 interface AMQP_Consumer as amqpc
+interface SMTP as smtp
+}
+
+interface HTTP as http1
 
 http -right- Angular
 Angular -right-> nestjs
 nestjs -> mysql
 mysql -down-> adminer
 nestjs --> amqpp
-amqpp -left- rabbitmq
-rabbitmq -down- amqpc
+amqpp -- rabbitmq
+rabbitmq -- amqpc
 quarkus -up-> amqpc
-
+quarkus -right-> smtp : send emails
+smtp -right- mailserver
+http -left- nginx
+nginx -left- http1
+nginx -down- http2
+http2 -right- Angular
+quarkus -right-> pm
+rabbitmq --> pm 
+nestjs --> pm 
+pm -- prometheus
+prometheus --> pd 
+pd -right- grafana 
 @enduml
