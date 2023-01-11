@@ -21,10 +21,10 @@ export class AssociationDetailComponent implements OnInit {
       this.id = res.get('id');
       
     })
-    const resquest: Observable<any> = this.http.get('http://localhost:3000/associations/'+this.id, { observe: 'response' });
+    const resquest: Observable<any> = this.http.get('http://localhost/api/associations/'+this.id, { observe: 'response' });
     resquest.toPromise().then(response => this.assoc = response.body);
 
-    const resquest2: Observable<any> = this.http.get('http://localhost:3000/associations/'+this.id+'/members', { observe: 'response' });
+    const resquest2: Observable<any> = this.http.get('http://localhost/api/associations/'+this.id+'/members', { observe: 'response' });
     resquest2.toPromise().then(response => this.dataSource = response.body);
 
   }

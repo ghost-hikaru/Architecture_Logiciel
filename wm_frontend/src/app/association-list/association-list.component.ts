@@ -26,7 +26,7 @@ export class AssociationListComponent implements OnInit {
   }
 
   listeAssociation(){
-    const resquest: Observable<any> = this.http.get('http://localhost:3000/associations', { observe: 'response' });
+    const resquest: Observable<any> = this.http.get('http://localhost/api/associations', { observe: 'response' });
     resquest.toPromise().then(response => this.dataSource = response.body);
   }
 

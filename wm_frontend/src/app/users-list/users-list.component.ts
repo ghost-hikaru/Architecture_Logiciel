@@ -24,7 +24,7 @@ export class UsersListComponent implements OnInit {
   }
 
   listeUser(){
-    const resquest: Observable<any> = this.http.get('http://localhost:3000/users', { observe: 'response' });
+    const resquest: Observable<any> = this.http.get('http://localhost/api/users', { observe: 'response' });
     resquest.toPromise().then(response => this.dataSource = response.body);
   }
 

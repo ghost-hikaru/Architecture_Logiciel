@@ -1,8 +1,6 @@
 import http from "k6/http";
 import {check, sleep, group} from "k6";
 
-baseUrl = "http://localhost";
-
 export const options = {
     stages: [
         {duration: '30s', target: 20},
@@ -13,9 +11,10 @@ export const options = {
 
 
 export default function (data) {
+    const baseUrl = "172.26.0.1";
     group("home", function () {
         let req, res;
-        res = http.get(baseUrl + ":4200/");
+        res = http.get(baseUrl + "/");
         check(res, {
             "status is 200": (r) => r.status === 200,
         });
@@ -24,7 +23,7 @@ export default function (data) {
 
     group("associations", function () {
         let req, res;
-        res = http.get(baseUrl + ":3000/associations");
+        res = http.get(baseUrl + "api/associations");
         check(res, {
             "status is 200": (r) => r.status === 200,
         });
@@ -33,7 +32,7 @@ export default function (data) {
 
     group("users", function () {
         let req, res;
-        res = http.get(baseUrl + ":3000/users");
+        res = http.get(baseUrl + "api/users");
         check(res, {
             "status is 200": (r) => r.status === 200,
         });

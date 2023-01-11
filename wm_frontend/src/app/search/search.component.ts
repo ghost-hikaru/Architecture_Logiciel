@@ -27,11 +27,11 @@ export class SearchComponent implements OnInit {
   onSubmit() {
     const searching = this.searchForm.value.user;
     if (this.router.url ==="/users") {
-    const resquest: Observable<any> = this.http.get('http://localhost:3000/users/'+searching+"/ByName", { observe: 'response' });
+    const resquest: Observable<any> = this.http.get('http://localhost/api/users/'+searching+"/ByName", { observe: 'response' });
     resquest.toPromise().then(response => this.userlist.setDataSource(response.body));
     }
     else if (this.router.url === "/associations"){
-      const resquest: Observable<any> = this.http.get('http://localhost:3000/associations/'+searching+"/ByName", { observe: 'response' });
+      const resquest: Observable<any> = this.http.get('http://localhost/api/associations/'+searching+"/ByName", { observe: 'response' });
     resquest.toPromise().then(response => this.assolist.setDataSource(response.body));
     }
   }

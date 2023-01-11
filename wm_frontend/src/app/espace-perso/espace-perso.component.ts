@@ -20,7 +20,7 @@ export class EspacePersoComponent implements OnInit {
   age="";
 
   ngOnInit(): void {
-    const resquest: Observable<any> = this.http.get('http://localhost:3000/users/'+this.tokenStorageService.getId(), { observe: 'response' });
+    const resquest: Observable<any> = this.http.get('http://localhost/api/users/'+this.tokenStorageService.getId(), { observe: 'response' });
     resquest.toPromise().then(response => {
       this.firstname = response.body.firstname
       this.lastname = response.body.lastname

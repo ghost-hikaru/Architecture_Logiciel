@@ -20,7 +20,7 @@ export class UserDetailComponent implements OnInit {
       this.id = res.get('id');
       
     })
-    const resquest: Observable<any> = this.http.get('http://localhost:3000/users/'+this.id, { observe: 'response' });
+    const resquest: Observable<any> = this.http.get('http://localhost/api/users/'+this.id, { observe: 'response' });
     resquest.toPromise().then(response => this.user=response.body);
   }
 

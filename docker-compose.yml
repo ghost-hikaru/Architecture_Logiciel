@@ -1,10 +1,6 @@
 version: "3.1"
 
 
-networks:
-  app-tier:
-    driver: bridge
-
 services:
   
   db:
@@ -12,62 +8,43 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     container_name: db
-    ports:
-      - "3306:3306"
-    expose:
-      - 3306
     environment:
       - MYSQL_USER=root
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_PASSWORD=root
       - MYSQL_DATABASE=nest
-    networks:
-      - app-tier
+
+
   nginx:
     image: nginx:latest
     depends_on:
       - frontend
+      - backend
     ports:
       - "80:80"
       - "443:443"
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
       - ./certs:/etc/nginx/certs
+
   frontend:
     build : ./wm_frontend
-    ports :
-     - 4200:4200
-    networks:
-      - app-tier
-
 
   backend:
     build : ./wm
-    ports :
-     - 3000:3000
-    expose:
-      - 3000
     depends_on:
       - db
-    networks:
-      - app-tier
+
 
   adminer:
     image: adminer
     restart: always
-    ports:
-      - 8080:8080
-    networks:
-      - app-tier
+
   
   rabbitmq:
     image: rabbitmq:management
     container_name: rabbitmq
-    ports:
-      - "15672:15672"
-      - "5672:5672"
-    networks:
-      - app-tier
+
 
   quarkus:
     build:
@@ -76,8 +53,6 @@ services:
     container_name: quarkus
     ports:
       - "8081:8081"
-    networks:
-      - app-tier
     depends_on:
       - rabbitmq
       
@@ -93,11 +68,11 @@ services:
       - quarkus
       - rabbitmq
     volumes:
-      - prometheus-data:/prometheus
-      - ./loadTesting/prometheus/prometheus.yaml:/etc/prometheus/prometheus.yml
+      - prometheus-data:/Prometheus
+      - ./Monitoring/Prometheus/prometheus.yaml:/etc/prometheus/prometheus.yml
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
-      - '--storage.tsdb.path=/prometheus'
+      - '--storage.tsdb.path=/Prometheus'
       
   grafana:
     image: grafana/grafana
@@ -107,13 +82,11 @@ services:
     environment:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=password
-    networks:
-      - app-tier
     volumes:
       - grafana-data:/var/lib/grafana
       - grafana-config:/etc/grafana
-      - ./loadTesting/grafana/grafanaDashboard.yaml:/etc/grafana/dashboards/grafanaDashboard.yaml
-      - ./loadTesting/grafana/grafanaDatasource.yaml:/etc/grafana/provisioning/datasources/grafanaDatasource.yaml
+      - ./Monitoring/Grafana/grafanaDashboard.yaml:/etc/grafana/dashboards/grafanaDashboard.yaml
+      - ./Monitoring/Grafana/grafanaDatasource.yaml:/etc/grafana/provisioning/datasources/grafanaDatasource.yaml
 
 volumes:
   grafana-data: 
