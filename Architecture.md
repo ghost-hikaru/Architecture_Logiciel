@@ -34,7 +34,7 @@ Nous sommes partis de notre projet web qui se composait d'un back-end,d'un front
 * Prometheus : Prometheus est un système de surveillance qui collecte et stocke les données métriques en temps réel, il permet d'analyser les données et d'identifier rapidement les problèmes de performance. **Statut : validé**
 * SMTP : SMTP est un protocole utilisé pour envoyer et recevoir des e-mails, il permet d'envoyer des messages d'un serveur à un autre et de les délivrer à des clients de messagerie locaux comme Outlook ou Thunderbird. **Statut : validé**
 * Nginx : Serveur web et proxy inverse qui peut également être utilisé comme équilibreur de charge. Il est connu pour ses performances et sa stabilité. Il est souvent utilisé pour gérer un grand nombre de connexions simultanées et pour traiter les fichiers statiques plus efficacement que les autres serveurs web. Il peut également être utilisé pour acheminer des requêtes vers d'autres serveurs ou applications et pour gérer des tâches telles que la terminaison et l'authentification SSL. **Statut : Mis en oeuvre**
-* K6 : Il peut exécuter de nombreux types de tests, chacun d'entre eux répondant à un objectif différent.
+* K6 : Il peut exécuter de nombreux types de tests, chacun d'entre eux répondant à un objectif différent. **Statut : Mis en oeuvre**
 
 ### Configuration et utilisation
 La configuration de l'architecture est fait de la sorte :
