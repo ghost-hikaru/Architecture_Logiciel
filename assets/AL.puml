@@ -87,4 +87,5 @@ pm -- prometheus
 prometheus --> pd 
 pd -right- grafana 
 k6 --> influx
+influx --> pd
 @enduml
